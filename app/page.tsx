@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { fetchZuanList } from "@/api/zuan";
 import { useLoading } from "@/hook";
 
 function Home() {
-  const [loading, setLoading] = useLoading();
+  const [, setLoading] = useLoading();
   const [data, setData] = useState<string>("");
 
-  const getData = async (level: string = "min") => {
+  const getData = useCallback(async (level: string = "min") => {
     try {
       setLoading(true);
       const res = await fetchZuanList(level);
@@ -18,7 +18,7 @@ function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getData();
