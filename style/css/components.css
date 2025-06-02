@@ -1,0 +1,5 @@
+@layer components {
+	.container-wrapper {
+		@apply container mx-auto p-4 md:p-5 border-dashed border-[var(--color-border)] md:border-x-[1px];
+	}
+}
