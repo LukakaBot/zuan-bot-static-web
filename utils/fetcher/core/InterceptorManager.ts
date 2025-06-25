@@ -21,8 +21,7 @@ class InterceptorManager {
       else {
         config = { cache: 'no-store' };
       }
-    }
-    else {
+    } else {
       config = { cache: 'force-cache' };
     }
 
@@ -49,11 +48,11 @@ class InterceptorManager {
     };
   }
 
-  response = <D>(response: Response): Promise<D> => {
+  response = <T>(response: Response): Promise<T> => {
     return new Promise((resolve, reject) => {
       const URL = response.url;
 
-      const res = response.json() as Promise<ResponseData<D>>;
+      const res = response.json() as Promise<ResponseData<T>>;
 
       if (response.status === 200) {
         res.then((data) => {
