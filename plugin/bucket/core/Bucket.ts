@@ -13,8 +13,9 @@ class Bucket {
 
   /** 获取缓存 */
   get<T>(key: string) {
-    if (this.storage.getItem(key)) {
-      return JSON.parse(this.storage.getItem(key)!) as T;
+    const data = this.storage.getItem(key);
+    if (data) {
+      return JSON.parse(data) as T;
     }
     return null;
   }
