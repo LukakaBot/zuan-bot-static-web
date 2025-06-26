@@ -1,6 +1,6 @@
+import { CSSProperties, useMemo } from 'react';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
-import { CSSProperties, useMemo } from 'react';
 
 interface BaseIconProps extends React.HTMLAttributes<HTMLElement> {
 	name: string;
@@ -15,7 +15,7 @@ function BaseIcon(props: BaseIconProps) {
 		(): CSSProperties => ({
 			width: `${size}px`,
 			height: `${size}px`,
-			color: color ? color : undefined,
+			color: color ? color : 'currentColor',
 		}),
 		[]
 	);
