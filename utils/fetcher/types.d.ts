@@ -13,10 +13,8 @@ export interface FetcherRequestConfig<D = any> {
   baseURL?: string;
   headers?: Headers;
   data?: D;
-  cacheTIme?: number;
-  next?: {
-    revalidate: number;
-  };
+  cacheTime?: number;
+  next?: NextFetchRequestConfig | undefined;
   cache?: 'no-store' | 'force-cache';
 };
 

@@ -4,7 +4,7 @@ import type { FetcherRequestConfig, FetcherRequestInit, Headers, ResponseData } 
 class InterceptorManager {
   constructor() { }
 
-  request = <T = any>({ url, method, data, cacheTIme }: FetcherRequestConfig<T>): FetcherRequestInit => {
+  request = <T = any>({ url, method, data, cacheTime }: FetcherRequestConfig<T>): FetcherRequestInit => {
     let params = '';
     let payload = '';
     let config: RequestInit = {};
@@ -14,9 +14,9 @@ class InterceptorManager {
       'Authorization': 'Bearer ',
     };
 
-    if (cacheTIme || cacheTIme === 0) {
-      if (cacheTIme > 0) {
-        config = { next: { revalidate: cacheTIme } }
+    if (cacheTime || cacheTime === 0) {
+      if (cacheTime > 0) {
+        config = { next: { revalidate: cacheTime } };
       }
       else {
         config = { cache: 'no-store' };
@@ -27,7 +27,7 @@ class InterceptorManager {
 
     if (method === 'GET' || method === 'DELETE') {
       if (data) {
-        params = queryString.stringify(data!);
+        params = queryString.stringify(data);
         _url = `${_url}?${params}`;
       }
     } else {
