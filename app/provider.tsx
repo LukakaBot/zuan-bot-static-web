@@ -1,22 +1,24 @@
-'use client';
+"use client";
 
-import '@/style/index';
-import ThemeProvider from '@/components/theme/ThemeProvider';
-import setupPlugin from '@/plugin';
+import "@/style/index";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
+import setupPlugin from "@/plugin";
 
 function Providers({ children }: React.PropsWithChildren) {
-	setupPlugin();
+  setupPlugin();
 
-	return (
-		<ThemeProvider
-			attribute='class'
-			defaultTheme='system'
-			enableSystem
-			disableTransitionOnChange
-		>
-			{children}
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+      <Toaster richColors position="top-center" />
+    </ThemeProvider>
+  );
 }
 
 export default Providers;

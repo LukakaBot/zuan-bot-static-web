@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { fetchZuanQuote } from "@/api/zuan";
 import { useLoading } from "@/hook";
+import { toast } from "sonner";
 
 function Home() {
   const [, setLoading] = useLoading();
@@ -24,9 +25,18 @@ function Home() {
     }
   };
 
-  function copyData(data: string) {
-    console.log(data);
-    navigator.clipboard.writeText(data);
+  async function copyData(data: string) {
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(data);
+    } else {
+      const textarea = document.createElement("textarea");
+      textarea.value = data;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+    toast.success("复制成功");
   }
 
   function getPreviousQuote() {
